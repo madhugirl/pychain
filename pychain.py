@@ -45,7 +45,7 @@ import hashlib
 # 5. Add an attribute named `amount` of type `float`.
 # Note that you’ll use this new `Record` class as the data type of your `record` attribute in the next section.
 
-
+""" this code defines a dataclass and tells python what kind of data it is """
 # @TODO
 # Create a Record Data Class that consists of the `sender`, `receiver`, and
 # `amount` attributes
@@ -65,6 +65,10 @@ class Record:
 # previous section. To do so, complete the following steps:
 # 1. In the `Block` class, rename the `data` attribute to `record`.
 # 2. Set the data type of the `record` attribute to `Record`.
+
+""" defining a block dataclass.  Defining a hash block function to connect the 
+data blocks using encoded hexi data to connect each block
+"""
 
 @dataclass
 class Block:
@@ -98,6 +102,9 @@ class Block:
 
         return sha.hexdigest()
 
+""" defining a new data class called pychain, a proof of work block chain.  This block
+prints the hash code that connects each block in the chain
+"""
 
 @dataclass
 class PyChain:
@@ -141,7 +148,10 @@ class PyChain:
 
 # Adds the cache decorator for Streamlit
 
-
+""" Here we are setting up a streamlit library to be able to 
+host the app on the internet using our local machine.  Using markdown we are able to add
+text and input data into the browser
+"""
 @st.cache(allow_output_mutation=True)
 def setup():
     print("Initializing Chain")
@@ -172,6 +182,9 @@ pychain = setup()
 #input_data = st.text_input("Block Data")
 #buyer = st.text_input("Buyer ID")
 
+""" setting up in streamlit app the text input data for the client """
+
+
 # @TODO:
 # Add an input area where you can get a value for `sender` from the user.
 sender = st.text_input("Sender ID")
@@ -183,6 +196,8 @@ receiver = st.text_input("Receiver ID")
 # @TODO:
 # Add an input area where you can get a value for `amount` from the user.
 amount = st.text_input("Amount")
+
+""" creating an if statement to verify the previous hash to be included in the next block"""
 
 if st.button("Add Block"):
     prev_block = pychain.chain[-1]
@@ -203,6 +218,9 @@ if st.button("Add Block"):
 
 ################################################################################
 # Streamlit Code (continues)
+
+""" adding a sidebar which searches the ledger for all previous transactions using a drop
+down menu """
 
 st.markdown("## The PyChain Ledger")
 
